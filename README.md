@@ -1,3 +1,7 @@
+Goal for the project is to redo the momentum chrome extension to be based on gratitude
+
+- We'll use the unsplashed api to get a background picture
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
