@@ -2,6 +2,12 @@ Goal for the project is to redo the momentum chrome extension to be based on gra
 
 - We'll use the unsplashed api to get a background picture
 
+## To Do
+
+Dboard component:
+
+- add more complex logic for the greeting so it is not running every minute
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
