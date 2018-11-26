@@ -11,6 +11,7 @@ class Dashboard extends Component {
     console.log("componentDidMount");
     this.intervalId = setInterval(() => {
       this.setTime();
+      this.setGreeting();
     }, 1000);
   };
   componentWillUnmount = () => {
@@ -31,10 +32,28 @@ class Dashboard extends Component {
     });
   }
 
+  getGreeting() {
+    const hrs = this.state.time.split(":")[0];
+    if (hrs < 12 && hrs > 4) {
+      return "Good Morning";
+    } else if (hrs > 12 && hrs < 4) {
+      return "Good Afternoon";
+    } else {
+      return "Good Evening";
+    }
+  }
+
+  setGreeting() {
+    this.setState({
+      greeting: this.getGreeting()
+    });
+  }
+
   render() {
     return (
       <div>
         <h1>{this.state.time}</h1>
+        <h1>{this.state.greeting}</h1>
       </div>
     );
   }
