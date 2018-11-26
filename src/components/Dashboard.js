@@ -10,7 +10,7 @@ class Dashboard extends Component {
   componentDidMount = () => {
     console.log("componentDidMount");
     this.intervalId = setInterval(() => {
-      this.getTime();
+      this.setTime();
     }, 1000);
   };
   componentWillUnmount = () => {
@@ -24,6 +24,11 @@ class Dashboard extends Component {
       mins = "0" + mins;
     }
     return `${hrs}:${mins}`;
+  }
+  setTime() {
+    this.setState({
+      time: this.getTime()
+    });
   }
 
   render() {
