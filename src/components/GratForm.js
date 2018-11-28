@@ -17,6 +17,7 @@ class GratForm extends Component {
 
   handleSubmit(event) {
     this.props.addGratEntryHandler(this.state.gratEntry);
+    this.resetForm();
     event.preventDefault();
   }
 
@@ -25,6 +26,7 @@ class GratForm extends Component {
   }
 
   render() {
+    const { disabled } = this.props;
     return (
       <form onSubmit={this.handleSubmit}>
         <div>
@@ -37,6 +39,7 @@ class GratForm extends Component {
             name="gratEntry"
             value={this.state.gratEntry}
             onChange={this.handleChange}
+            disabled={disabled}
           />
         </div>
       </form>
