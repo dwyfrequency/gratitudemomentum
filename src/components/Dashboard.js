@@ -5,7 +5,7 @@ class Dashboard extends Component {
     super(props);
     this.state = {
       time: this.getTime(),
-      greeting: ""
+      greeting: this.getGreeting()
     };
     this._callEveryHour = this._callEveryHour.bind(this);
     this.getTime = this.getTime.bind(this);
@@ -26,6 +26,7 @@ class Dashboard extends Component {
   };
   componentWillUnmount = () => {
     clearInterval(this.timeIntervalId);
+    clearInterval(this.greetingIntervalId);
   };
   getTime() {
     let date = new Date();
