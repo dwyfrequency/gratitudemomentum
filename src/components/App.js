@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Dashboard from "./Dashboard";
 import GratForm from "./GratForm";
+import Today from "./Today";
 
 class App extends Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class App extends Component {
   }
 
   render() {
-    const { gratEntryFormDisabled } = this.state;
+    const { gratEntryFormDisabled, gratEntry } = this.state;
     return (
       <div className="App">
         <header className="App-header" />
@@ -26,7 +27,7 @@ class App extends Component {
           addGratEntryHandler={this.addGratEntryHandler}
           disabled={gratEntryFormDisabled}
         />
-        {this.state.gratEntry}
+        {gratEntry !== "" ? <Today gratEntry={gratEntry} /> : null}
       </div>
     );
   }
