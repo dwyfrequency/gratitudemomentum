@@ -4,15 +4,25 @@ class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      time: this.getTime()
+      time: this.getTime(),
+      greeting: ""
     };
+    this._callEveryHour = this._callEveryHour.bind(this);
+    this.getTime = this.getTime.bind(this);
+    this.setTime = this.setTime.bind(this);
+    this.getGreeting = this.getGreeting.bind(this);
+    this.setGreeting = this.setGreeting.bind(this);
+  }
+  _callEveryHour(func) {
+    return setInterval(func, 1000 * 60 * 60);
   }
   componentDidMount = () => {
     console.log("componentDidMount");
     this.timeIntervalId = setInterval(() => {
       this.setTime();
-      this.setGreeting();
     }, 1000);
+
+    this.greetingIntervalId = this._callEveryHour(this.getGreeting);
   };
   componentWillUnmount = () => {
     clearInterval(this.timeIntervalId);
@@ -33,14 +43,19 @@ class Dashboard extends Component {
   }
 
   getGreeting() {
-    const hrs = parseInt(this.state.time.split(":")[0]);
-    if (hrs < 12 && hrs > 4) {
-      return "Good Morning";
-    } else if (hrs > 12 && hrs < 4) {
-      return "Good Afternoon";
+    const myDate = new Date();
+    const hrs = myDate.getHours();
+
+    let greeting;
+
+    if (hrs < 12) {
+      greeting = "Good Morning";
+    } else if (hrs >= 12 && hrs <= 17) {
+      greeting = "Good Afternoon";
     } else {
-      return "Good Evening";
+      greeting = "Good Evening";
     }
+    return greeting;
   }
 
   setGreeting() {
