@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "../styles/Today.css";
+import AddDel from "./AddDel";
 
 class Today extends Component {
   constructor(props) {
@@ -21,7 +22,7 @@ class Today extends Component {
     const { isAcknowledged } = this.state;
     return (
       <div>
-        <h3>Today I am grateful for:</h3>
+        <h3>Today, I am grateful for:</h3>
         <form>
           <input
             id="isAcknowledged"
@@ -33,6 +34,7 @@ class Today extends Component {
           <label htmlFor="isAcknowledged" className="strikethrough">
             {gratEntry}
           </label>
+          <AddDel />
         </form>
       </div>
     );
