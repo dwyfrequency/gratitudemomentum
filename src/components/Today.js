@@ -1,9 +1,11 @@
 import React, { Component } from "react";
+import "../styles/Today.css";
 
 class Today extends Component {
   constructor(props) {
     super(props);
     this.state = { isAcknowledged: false };
+    this.handleChange = this.handleChange.bind(this);
   }
   handleChange(event) {
     const target = event.target;
@@ -21,13 +23,15 @@ class Today extends Component {
       <div>
         <h3>Today</h3>
         <form>
-          <label>
-            <input
-              name="isAcknowledged"
-              type="checkbox"
-              checked={isAcknowledged}
-            />
-            <strong>{gratEntry}</strong>
+          <input
+            id="isAcknowledged"
+            name="isAcknowledged"
+            type="checkbox"
+            checked={isAcknowledged}
+            onChange={this.handleChange}
+          />
+          <label htmlFor="isAcknowledged" className="strikethrough">
+            {gratEntry}
           </label>
         </form>
       </div>
