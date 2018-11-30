@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "../styles/GratForm.css";
 
 class GratForm extends Component {
   constructor(props) {
