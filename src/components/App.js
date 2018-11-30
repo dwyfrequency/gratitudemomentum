@@ -23,10 +23,12 @@ class App extends Component {
       <div className="App">
         <header className="App-header" />
         <Dashboard />
-        <GratForm
-          addGratEntryHandler={this.addGratEntryHandler}
-          disabled={gratEntryFormDisabled}
-        />
+        {gratEntryFormDisabled ? null : (
+          <GratForm
+            addGratEntryHandler={this.addGratEntryHandler}
+            disabled={gratEntryFormDisabled}
+          />
+        )}
         {gratEntry !== "" ? <Today gratEntry={gratEntry} /> : null}
       </div>
     );
