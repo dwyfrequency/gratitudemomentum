@@ -68,7 +68,13 @@ class Dashboard extends Component {
   render() {
     return (
       <div>
-        <h1 style={{ fontSize: "1000%", letterSpacing: "-5px" }}>
+        <h1
+          style={{
+            fontSize: "1000%",
+            letterSpacing: "-5px",
+            marginBottom: "0"
+          }}
+        >
           {this.state.time}
         </h1>
         <h1>{this.state.greeting}</h1>
