@@ -34,7 +34,7 @@ class Today extends Component {
           <label htmlFor="isAcknowledged" className="strikethrough">
             {gratEntry}
           </label>
-          <AddDel />
+          <AddDel removeGratEntryHandler={this.props.removeGratEntryHandler} />
         </form>
       </div>
     );

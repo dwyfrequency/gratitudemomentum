@@ -3,7 +3,7 @@ import { MdClose } from "react-icons/md";
 
 export default function AddDel(props) {
   return (
-    <button>
+    <button onClick={() => props.removeGratEntryHandler()}>
       <MdClose />
     </button>
   );

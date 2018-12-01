@@ -11,10 +11,15 @@ class App extends Component {
       gratEntryFormDisabled: false
     };
     this.addGratEntryHandler = this.addGratEntryHandler.bind(this);
+    this.resetState = this.resetState.bind(this);
   }
 
   addGratEntryHandler(entry) {
     this.setState({ gratEntry: entry, gratEntryFormDisabled: true });
+  }
+
+  resetState() {
+    this.setState({ gratEntry: "", gratEntryFormDisabled: false });
   }
 
   render() {
@@ -29,7 +34,12 @@ class App extends Component {
             disabled={gratEntryFormDisabled}
           />
         )}
-        {gratEntry !== "" ? <Today gratEntry={gratEntry} /> : null}
+        {gratEntry !== "" ? (
+          <Today
+            gratEntry={gratEntry}
+            removeGratEntryHandler={this.resetState}
+          />
+        ) : null}
       </div>
     );
   }
