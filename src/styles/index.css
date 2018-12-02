@@ -8,8 +8,9 @@ body {
     sans-serif;
   /* with the linear gradient, we make the background image darker */
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-    url("https://source.unsplash.com/random?water/1600x900");
-  background-size: 100%;
+    url("https://source.unsplash.com/random?water/1920x1080");
+  background-size: cover;
+  min-height: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

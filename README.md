@@ -1,6 +1,7 @@
 Goal for the project is to redo the momentum chrome extension to be based on gratitude
 
 - http://quotes.rest/qod.json?category=inspire use this api to get a quote for the webpage
+- http://api.openweathermap.org
 
 ## To Do
 

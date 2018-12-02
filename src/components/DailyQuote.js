@@ -12,10 +12,7 @@ class DailyQuote extends Component {
     // const { text, from: author } = API("../data/enterpreneur-quotes.json");
     // this.setState({ text, author });
     fetch("http://quotes.rest/qod.json?category=inspire")
-      .then(resp => {
-        console.log(resp);
-        return resp.json();
-      })
+      .then(resp => resp.json())
       .then(data => {
         console.log(data);
         const {
