@@ -7,6 +7,7 @@ export default function API(path) {
   return fetch(path)
     .then(resp => console.log(resp.text()))
     .then(data => {
+      console.log(data);
       const lenLessOne = data.length - 1;
       return data[getRandomIntInclusive(lenLessOne)];
     });

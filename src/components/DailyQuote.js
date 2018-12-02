@@ -1,22 +1,40 @@
 import React, { Component } from "react";
-import API from "../funcs/API";
+// import API from "../funcs/API";
 
 class DailyQuote extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      author: "",
+      quote: ""
+    };
   }
   componentDidMount = () => {
-    const { text, from: author } = API("../data/enterpreneur-quotes.json");
-    this.setState({ text, author });
+    // const { text, from: author } = API("../data/enterpreneur-quotes.json");
+    // this.setState({ text, author });
+    fetch("http://quotes.rest/qod.json?category=inspire")
+      .then(resp => {
+        console.log(resp);
+        return resp.json();
+      })
+      .then(data => {
+        console.log(data);
+        const {
+          contents: { quotes }
+        } = data;
+        const { author, quote } = quotes[0];
+        this.setState({ author, quote });
+        return data;
+      });
   };
 
   render() {
-    const { text, author } = this.state;
+    const { quote, author } = this.state;
     return (
       <footer>
-        <p>{author}:</p>
-        <p>{text}</p>
+        <p>
+          <strong>{author}</strong> - "{quote}"
+        </p>
       </footer>
     );
   }
