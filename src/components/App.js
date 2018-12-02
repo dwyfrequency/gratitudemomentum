@@ -3,6 +3,7 @@ import Dashboard from "./Dashboard";
 import GratForm from "./GratForm";
 import Today from "./Today";
 import DailyQuote from "./DailyQuote";
+import Weather from "./Weather";
 
 class App extends Component {
   constructor(props) {
@@ -27,7 +28,9 @@ class App extends Component {
     const { gratEntryFormDisabled, gratEntry } = this.state;
     return (
       <div className="App">
-        <header className="App-header" />
+        <header className="App-header">
+          <Weather />
+        </header>
         <Dashboard />
         {gratEntryFormDisabled ? null : (
           <GratForm
