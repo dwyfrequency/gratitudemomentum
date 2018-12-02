@@ -37,13 +37,29 @@ class Weather extends Component {
       temp
     });
   }
-
   componentDidMount = () => {
     this.setWeather();
   };
 
   render() {
-    return <div>weather</div>;
+    const {
+      city,
+      description,
+      descrSummary,
+      temp,
+      humidity,
+      icon
+    } = this.state;
+    return (
+      <div>
+        <h3>{city}</h3>
+        <img src={icon} alt={descrSummary} />
+        {/* checks whether there is a value in description before using a string method, b/c before api call it is undefined and will fail */}
+        <li>{description && description.toUpperCase()}</li>
+        <li>{temp}</li>
+        <li>{humidity}</li>
+      </div>
+    );
   }
 }
 
