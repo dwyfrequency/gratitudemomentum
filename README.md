@@ -1,6 +1,6 @@
 Goal for the project is to redo the momentum chrome extension to be based on gratitude
 
-- We'll use the unsplashed api to get a background picture
+- http://quotes.rest/qod.json?category=inspire use this api to get a quote for the webpage
 
 ## To Do
 

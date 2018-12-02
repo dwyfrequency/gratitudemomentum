@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Dashboard from "./Dashboard";
 import GratForm from "./GratForm";
 import Today from "./Today";
+import DailyQuote from "./DailyQuote";
 
 class App extends Component {
   constructor(props) {
@@ -40,6 +41,7 @@ class App extends Component {
             removeGratEntryHandler={this.resetState}
           />
         ) : null}
+        <DailyQuote />
       </div>
     );
   }
