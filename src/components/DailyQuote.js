@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import API from "../funcs/API";
 
 class DailyQuote extends Component {
   constructor(props) {
