@@ -10,6 +10,8 @@ class Weather extends Component {
     };
     this.getWeather = this.getWeather.bind(this);
     this.setWeather = this.setWeather.bind(this);
+    this.getLocation = this.getLocation.bind(this);
+    this.geoSuccess = this.geoSuccess.bind(this);
   }
 
   async getWeather() {
@@ -37,9 +39,27 @@ class Weather extends Component {
       temp
     });
   }
-  componentDidMount = () => {
+  async componentDidMount() {
     this.setWeather();
-  };
+    // const { latitude: lat, longitude: lon } = await getLocation();
+    this.getLocation();
+    // console.log(lat, lon);
+  }
+
+  async getLocation() {
+    if (navigator.geolocation) {
+      return navigator.geolocation.getCurrentPosition(this.geoSuccess, () =>
+        console.error("Error with getting location")
+      );
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+    }
+  }
+
+  async geoSuccess(position) {
+    const { latitude: lat, longitude: lon } = position.coords;
+    this.setState({ lat, lon });
+  }
 
   render() {
     const {

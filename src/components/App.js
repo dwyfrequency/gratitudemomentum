@@ -5,24 +5,6 @@ import Today from "./Today";
 import DailyQuote from "./DailyQuote";
 import Weather from "./Weather";
 
-async function getLocation() {
-  if (navigator.geolocation) {
-    return navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
-  } else {
-    console.log("Geolocation is not supported by this browser.");
-  }
-}
-
-async function geoSuccess(position) {
-  const { latitude: lat, longitude: lon } = position.coords;
-  console.log({ lat, lon });
-  return { lat, lon };
-}
-
-function geoError() {
-  alert("Geocoder failed.");
-}
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -32,12 +14,6 @@ class App extends Component {
     };
     this.addGratEntryHandler = this.addGratEntryHandler.bind(this);
     this.resetState = this.resetState.bind(this);
-  }
-  async componentDidMount() {
-    // const { latitude: lat, longitude: lon } = await getLocation();
-    const resp = getLocation();
-    console.log(resp, "resp");
-    // console.log(lat, lon);
   }
 
   addGratEntryHandler(entry) {
