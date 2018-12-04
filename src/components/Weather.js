@@ -6,7 +6,9 @@ class Weather extends Component {
     super(props);
     this.state = {
       city: this.props.city ? this.props.city : "Miami",
-      countryCode: this.props.countryCode ? this.props.countryCode : "US"
+      countryCode: this.props.countryCode ? this.props.countryCode : "US",
+      lat: "",
+      lon: ""
     };
     this.getWeather = this.getWeather.bind(this);
     this.setWeather = this.setWeather.bind(this);
@@ -44,6 +46,18 @@ class Weather extends Component {
     // const { latitude: lat, longitude: lon } = await getLocation();
     this.getLocation();
     // console.log(lat, lon);
+  }
+
+  async componentDidUpdate(prevProps, prevState) {
+    if (prevState.lat !== this.state.lat && prevState.lon !== this.state.lon) {
+      const { lat, lon } = this.state;
+      const response = await fetch(
+        `https://fcc-weather-api.glitch.me/api/current?lat=${lat}&lon=${lon}`
+      );
+      const json = await response.json();
+      const { city } = await json;
+      await this.setState({ city });
+    }
   }
 
   async getLocation() {
