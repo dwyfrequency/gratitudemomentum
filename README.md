@@ -1,6 +1,6 @@
 Goal for the project is to redo the momentum chrome extension to be based on gratitude
 
-- add image for project to read me https://stackoverflow.com/questions/14494747/add-images-to-readme-md-on-github
+- add image for project to read me https://stackoverflow.com/questions/14494747/add-images-to-readme-md-on-github || named GratListMomentum on desktop
 
 ## To Do
 
