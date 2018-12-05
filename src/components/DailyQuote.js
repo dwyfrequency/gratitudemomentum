@@ -26,7 +26,7 @@ class DailyQuote extends Component {
   render() {
     const { quote, author } = this.state;
     return (
-      <footer style={{ position: "absolute", bottom: 0 }}>
+      <footer style={{ position: "absolute", bottom: 0, width: "100%" }}>
         <p>
           <strong>{author}</strong> - "{quote}"
         </p>
