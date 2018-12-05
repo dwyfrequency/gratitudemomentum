@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "../styles/Weather.css";
+import toTitleCase from "../helperFuncs/toTitleCase";
 
 class Weather extends Component {
   constructor(props) {
@@ -64,11 +65,11 @@ class Weather extends Component {
         {/* checks whether there is a value in description before using a string method, b/c before api call it is undefined and will fail */}
         <ul className="Weather-list">
           <li>{city}</li>
+          <li>{description && toTitleCase(description)}</li>
+          <li>{temp}°C</li>
           <li>
             <img src={icon} alt={shortDescr} />
           </li>
-          <li>{description && description.toUpperCase()}</li>
-          <li>{temp}°C</li>
         </ul>
       </div>
     ) : (
