@@ -1,13 +1,10 @@
 Goal for the project is to redo the momentum chrome extension to be based on gratitude
 
-- http://quotes.rest/qod.json?category=inspire use this api to get a quote for the webpage
-- http://api.openweathermap.org
+- add image for project to read me https://stackoverflow.com/questions/14494747/add-images-to-readme-md-on-github
 
 ## To Do
 
 Dboard component:
-
-- add more complex logic for the greeting so it is not running every minute
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
