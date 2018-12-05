@@ -26,8 +26,8 @@ class Weather extends Component {
       name: city,
       main: { temp }
     } = await json;
-    const { description, icon } = await json.weather[0];
-    await this.setState({ city, description, icon, temp });
+    const { main: shortDescr, description, icon } = await json.weather[0];
+    await this.setState({ city, shortDescr, description, icon, temp });
   }
   async componentDidMount() {
     // this.setWeather();
@@ -57,22 +57,19 @@ class Weather extends Component {
   }
 
   render() {
-    const {
-      city,
-      description,
-      descrSummary,
-      temp,
-      humidity,
-      icon
-    } = this.state;
-    return (
+    const { city, shortDescr, description, temp, icon } = this.state;
+    return city ? (
       <div>
         <h3>{city}</h3>
-        <img src={icon} alt={descrSummary} />
+        <img src={icon} alt={shortDescr} />
         {/* checks whether there is a value in description before using a string method, b/c before api call it is undefined and will fail */}
-        <li>{description && description.toUpperCase()}</li>
-        <li>{temp}</li>
+        <ul>
+          <li>{description && description.toUpperCase()}</li>
+          <li>{temp}°C</li>
+        </ul>
       </div>
+    ) : (
+      <p>Enable geolocation for weather info</p>
     );
   }
 }
