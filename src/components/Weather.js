@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "../styles/Weather.css";
 
 class Weather extends Component {
   constructor(props) {
@@ -60,10 +61,12 @@ class Weather extends Component {
     const { city, shortDescr, description, temp, icon } = this.state;
     return city ? (
       <div>
-        <h3>{city}</h3>
-        <img src={icon} alt={shortDescr} />
         {/* checks whether there is a value in description before using a string method, b/c before api call it is undefined and will fail */}
-        <ul>
+        <ul className="Weather-list">
+          <li>{city}</li>
+          <li>
+            <img src={icon} alt={shortDescr} />
+          </li>
           <li>{description && description.toUpperCase()}</li>
           <li>{temp}°C</li>
         </ul>
