@@ -14,7 +14,6 @@ class DailyQuote extends Component {
     fetch("http://quotes.rest/qod.json?category=inspire")
       .then(resp => resp.json())
       .then(data => {
-        console.log(data);
         const {
           contents: { quotes }
         } = data;
@@ -27,7 +26,7 @@ class DailyQuote extends Component {
   render() {
     const { quote, author } = this.state;
     return (
-      <footer>
+      <footer style={{ position: "absolute", bottom: 0 }}>
         <p>
           <strong>{author}</strong> - "{quote}"
         </p>

@@ -32,9 +32,7 @@ class Weather extends Component {
     await this.setState({ city, shortDescr, description, icon, temp });
   }
   async componentDidMount() {
-    // this.setWeather();
     this.getLocation();
-    // console.log(lat, lon);
   }
 
   async componentDidUpdate(prevProps, prevState) {
@@ -62,9 +60,9 @@ class Weather extends Component {
     const { city, shortDescr, description, temp, icon } = this.state;
     return city ? (
       <div>
-        {/* checks whether there is a value in description before using a string method, b/c before api call it is undefined and will fail */}
         <ul className="Weather-list">
           <li>{city}</li>
+          {/* checks whether there is a value in description before using a string method, b/c before api call it is undefined and will fail */}
           <li>{description && toTitleCase(description)}</li>
           <li>{temp}°C</li>
           <li>
