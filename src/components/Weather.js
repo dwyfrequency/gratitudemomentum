@@ -1,68 +1,49 @@
 import React, { Component } from "react";
-import config from "../hidden/config";
 
 class Weather extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      city: this.props.city ? this.props.city : "Miami",
-      countryCode: this.props.countryCode ? this.props.countryCode : "US",
       lat: "",
-      lon: ""
+      lon: "",
+      city: "",
+      description: "",
+      icon: "",
+      temp: ""
     };
-    this.getWeather = this.getWeather.bind(this);
     this.setWeather = this.setWeather.bind(this);
     this.getLocation = this.getLocation.bind(this);
     this.geoSuccess = this.geoSuccess.bind(this);
   }
 
-  async getWeather() {
-    const { WEATHER_KEY } = config;
-    const { city, countryCode } = this.state;
-    // URL
-    const weatherEndpoint = `http://api.openweathermap.org/data/2.5/weather?q=${city},${countryCode}&units=imperial&appid=${WEATHER_KEY}`;
-    // log(weatherEndpoint);
-
-    const weatherResps = await fetch(weatherEndpoint);
-    const responseData = await weatherResps.json();
-    return responseData;
-  }
-
   async setWeather() {
-    const apiResponse = await this.getWeather();
-    console.log(apiResponse);
-    const { description, main: descrSummary, icon } = apiResponse.weather[0];
-    const { humidity, temp } = apiResponse.main;
-    this.setState({
-      description,
-      descrSummary,
-      icon: `http://openweathermap.org/img/w/${icon}.png`,
-      humidity,
-      temp
-    });
+    const { lat, lon } = this.state;
+    const response = await fetch(
+      `https://fcc-weather-api.glitch.me/api/current?lat=${lat}&lon=${lon}`
+    );
+    const json = await response.json();
+    const {
+      name: city,
+      main: { temp }
+    } = await json;
+    const { description, icon } = await json.weather[0];
+    await this.setState({ city, description, icon, temp });
   }
   async componentDidMount() {
-    this.setWeather();
-    // const { latitude: lat, longitude: lon } = await getLocation();
+    // this.setWeather();
     this.getLocation();
     // console.log(lat, lon);
   }
 
   async componentDidUpdate(prevProps, prevState) {
     if (prevState.lat !== this.state.lat && prevState.lon !== this.state.lon) {
-      const { lat, lon } = this.state;
-      const response = await fetch(
-        `https://fcc-weather-api.glitch.me/api/current?lat=${lat}&lon=${lon}`
-      );
-      const json = await response.json();
-      const { city } = await json;
-      await this.setState({ city });
+      await this.setWeather();
     }
   }
 
   async getLocation() {
     if (navigator.geolocation) {
-      return navigator.geolocation.getCurrentPosition(this.geoSuccess, () =>
+      navigator.geolocation.getCurrentPosition(this.geoSuccess, () =>
         console.error("Error with getting location")
       );
     } else {
@@ -91,7 +72,6 @@ class Weather extends Component {
         {/* checks whether there is a value in description before using a string method, b/c before api call it is undefined and will fail */}
         <li>{description && description.toUpperCase()}</li>
         <li>{temp}</li>
-        <li>{humidity}</li>
       </div>
     );
   }
