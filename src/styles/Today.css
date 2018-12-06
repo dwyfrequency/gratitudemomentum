@@ -8,3 +8,17 @@ input[type="checkbox"]:checked + label.strikethrough {
 input#gratEntry:focus {
   outline: 0;
 }
+label.strikethrough {
+  font-size: 200%;
+}
+form.acknowledgeForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+form.acknowledgeForm > input,
+label {
+  padding: 20px;
+}

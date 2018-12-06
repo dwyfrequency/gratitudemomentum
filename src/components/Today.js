@@ -22,8 +22,8 @@ class Today extends Component {
     const { isAcknowledged } = this.state;
     return (
       <div>
-        <h3>Today, I am grateful for:</h3>
-        <form>
+        <h2 className="TodayHeader">Today, I am grateful for:</h2>
+        <form className="acknowledgeForm">
           <input
             id="isAcknowledged"
             name="isAcknowledged"
