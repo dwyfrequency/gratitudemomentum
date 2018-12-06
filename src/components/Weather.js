@@ -18,26 +18,26 @@ class Weather extends Component {
     this.geoSuccess = this.geoSuccess.bind(this);
   }
 
-  async setWeather() {
+  setWeather() {
     const { lat, lon } = this.state;
-    const response = await fetch(
-      `https://fcc-weather-api.glitch.me/api/current?lat=${lat}&lon=${lon}`
-    );
-    const json = await response.json();
-    const {
-      name: city,
-      main: { temp }
-    } = await json;
-    const { main: shortDescr, description, icon } = await json.weather[0];
-    await this.setState({ city, shortDescr, description, icon, temp });
+    fetch(`https://fcc-weather-api.glitch.me/api/current?lat=${lat}&lon=${lon}`)
+      .then(response => response.json())
+      .then(json => {
+        const {
+          name: city,
+          main: { temp }
+        } = json;
+        const { main: shortDescr, description, icon } = json.weather[0];
+        this.setState({ city, shortDescr, description, icon, temp });
+      });
   }
-  async componentDidMount() {
+  componentDidMount() {
     this.getLocation();
   }
 
-  async componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps, prevState) {
     if (prevState.lat !== this.state.lat && prevState.lon !== this.state.lon) {
-      await this.setWeather();
+      this.setWeather();
     }
   }
 
