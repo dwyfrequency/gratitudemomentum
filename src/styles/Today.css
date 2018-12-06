@@ -18,7 +18,6 @@ form.acknowledgeForm {
   padding: 10px;
 }
 
-form.acknowledgeForm > input,
-label {
+form.acknowledgeForm > label {
   padding: 20px;
 }
