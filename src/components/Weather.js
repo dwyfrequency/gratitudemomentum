@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import "../styles/Weather.css";
 import toTitleCase from "../helperFuncs/toTitleCase";
+import Loading from "./Loading";
 
 class Weather extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: false,
       lat: "",
       lon: "",
       city: "",
@@ -28,7 +30,14 @@ class Weather extends Component {
           main: { temp }
         } = json;
         const { main: shortDescr, description, icon } = json.weather[0];
-        this.setState({ city, shortDescr, description, icon, temp });
+        this.setState({
+          loading: false,
+          city,
+          shortDescr,
+          description,
+          icon,
+          temp
+        });
       });
   }
   componentDidMount() {
@@ -41,7 +50,7 @@ class Weather extends Component {
     }
   }
 
-  async getLocation() {
+  getLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(this.geoSuccess, () =>
         console.error("Error with getting location")
@@ -51,14 +60,16 @@ class Weather extends Component {
     }
   }
 
-  async geoSuccess(position) {
+  geoSuccess(position) {
     const { latitude: lat, longitude: lon } = position.coords;
-    this.setState({ lat, lon });
+    this.setState({ loading: true, lat, lon });
   }
 
   render() {
-    const { city, shortDescr, description, temp, icon } = this.state;
-    return city ? (
+    const { loading, city, shortDescr, description, temp, icon } = this.state;
+    return loading ? (
+      <Loading />
+    ) : city ? (
       <div>
         <ul className="Weather-list">
           <li>{city}</li>
