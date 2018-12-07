@@ -4,6 +4,7 @@ import GratForm from "./GratForm";
 import Today from "./Today";
 import DailyQuote from "./DailyQuote";
 import Weather from "./Weather";
+import Loading from "./Loading";
 
 class App extends Component {
   constructor(props) {
