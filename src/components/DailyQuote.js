@@ -1,9 +1,11 @@
 import React, { Component } from "react";
+import Loading from "./Loading";
 
 class DailyQuote extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: false,
       author: "",
       quote: ""
     };
@@ -11,6 +13,7 @@ class DailyQuote extends Component {
   componentDidMount = () => {
     // const { text, from: author } = API("../data/enterpreneur-quotes.json");
     // this.setState({ text, author });
+    this.setState(prevState => ({ loading: true }));
     fetch("http://quotes.rest/qod.json?category=inspire")
       .then(resp => resp.json())
       .then(data => {
@@ -18,14 +21,16 @@ class DailyQuote extends Component {
           contents: { quotes }
         } = data;
         const { author, quote } = quotes[0];
-        this.setState({ author, quote });
+        this.setState(prevState => ({ loading: false, author, quote }));
         return data;
       });
   };
 
   render() {
-    const { quote, author } = this.state;
-    return (
+    const { loading, quote, author } = this.state;
+    return loading ? (
+      <Loading />
+    ) : (
       <footer style={{ position: "absolute", bottom: 0, width: "100%" }}>
         <p>
           <strong>{author}</strong> - "{quote}"
