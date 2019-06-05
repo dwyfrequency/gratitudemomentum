@@ -14,7 +14,7 @@ class DailyQuote extends Component {
     // const { text, from: author } = API("../data/enterpreneur-quotes.json");
     // this.setState({ text, author });
     this.setState(prevState => ({ loading: true }));
-    fetch("http://quotes.rest/qod.json?category=inspire")
+    fetch("https://quotes.rest/qod.json?category=inspire")
       .then(resp => resp.json())
       .then(data => {
         const {
